@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ExplodeBtn : BombBtn
 {
-    public GameObject bomb;
-    private Bomb m_bomb = null;
-
     protected override void Start()
     {
         base.Start();

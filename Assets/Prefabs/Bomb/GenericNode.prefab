@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1570250242514046763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -248,6 +248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_running: 0
+  description: '[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.]'
+  hint: template
+  color: {r: 1, g: 0.4, b: 1, a: 1}
 --- !u!65 &4155368862793239567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,7 +399,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294902015
-  m_fontColor: {r: 1, g: 0, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.4, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -751,7 +755,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294902015
-  m_fontColor: {r: 1, g: 0, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.4, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -924,7 +928,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294902015
-  m_fontColor: {r: 1, g: 0, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.4, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

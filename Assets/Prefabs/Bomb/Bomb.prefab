@@ -537,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 1
   m_enabled: 1
+  bomb: {fileID: 3206743152511576140}
 --- !u!1 &2271989405295780672
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSlot: {fileID: 4181159524772163648}
+  cam: {fileID: 0}
+  m_camMovement: {fileID: 0}
 --- !u!1 &3816625708879276139
 GameObject:
   m_ObjectHideFlags: 0

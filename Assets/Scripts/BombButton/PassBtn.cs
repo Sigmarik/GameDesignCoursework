@@ -6,6 +6,6 @@ public class PassBtn : BombBtn
 {
     public override void OnPushed()
     {
-        NodeVisibility.sCurrentPlayer = 1 - NodeVisibility.sCurrentPlayer;
+        m_bomb.Pass();
     }
 }

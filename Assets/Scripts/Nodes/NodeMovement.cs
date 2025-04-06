@@ -103,9 +103,9 @@ public class NodeMovement : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             // Maintain a constant distance from the camera
             Vector3 direction = hitPoint - mainCamera.transform.position;
-            if (NodeSlot.GetActiveSlot() != null)
+            if (NodeSlot.GetActiveSlot() is null)
             {
-                direction *= 1.1f;
+                direction *= 0.8f;
             }
             transform.position = mainCamera.transform.position + direction;
         }

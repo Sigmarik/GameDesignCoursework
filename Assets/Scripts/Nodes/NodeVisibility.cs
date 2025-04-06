@@ -36,24 +36,25 @@ public class NodeVisibility : MonoBehaviour
         FillDependencies();
         m_owningPlayer = sCurrentPlayer;
         description.SetActive(false);
-        m_descriptorText.SetText(m_nodeBeh.GetDescription());
+        m_descriptorText.SetText(m_nodeBeh.description);
         UpdateColors();
     }
 
     void OnValidate()
     {
         FillDependencies();
-        m_descriptorText.SetText(m_nodeBeh.GetDescription());
+        m_descriptorText.SetText(m_nodeBeh.description);
+        description.SetActive(false);
         UpdateColors();
     }
 
     void UpdateColors()
     {
-        m_hintText.SetText(m_nodeBeh.GetHint());
-        m_hintText.color = m_nodeBeh.GetColor();
+        m_hintText.SetText(m_nodeBeh.hint);
+        m_hintText.color = m_nodeBeh.color;
 
-        m_hiddenText.color = m_nodeBeh.GetColor();
-        m_visibleText.color = m_nodeBeh.GetColor();
+        m_hiddenText.color = m_nodeBeh.color;
+        m_visibleText.color = m_nodeBeh.color;
     }
 
     void OnMouseEnter()
@@ -74,14 +75,16 @@ public class NodeVisibility : MonoBehaviour
     {
         if (m_owningPlayer == sCurrentPlayer || sReveal)
         {
-            m_hiddenText.enabled = false;
-            m_visibleText.enabled = true;
+            hidden.SetActive(false);
+            visible.SetActive(true);
             hint.SetActive(false);
         }
         else
         {
-            m_hiddenText.enabled = true;
-            m_visibleText.enabled = false;
+            hidden.SetActive(true);
+            visible.SetActive(false);
+            // m_hiddenText.enabled = true;
+            // m_visibleText.enabled = false;
             description.SetActive(false);
         }
     }

@@ -16,12 +16,16 @@ public class BombBtn : MonoBehaviour
     private bool m_pushed = false;
     bool m_disabled = false;
 
+    public GameObject bomb;
+    protected Bomb m_bomb;
+
     protected virtual void Start()
     {
         m_originalPos = transform.localPosition;
         m_originalRotation = transform.localRotation;
         m_targetPos = m_originalPos;
         m_targetRot = m_originalRotation;
+        m_bomb = bomb.GetComponent<Bomb>();
     }
 
     void OnMouseEnter()
@@ -80,8 +84,8 @@ public class BombBtn : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, m_targetPos, 0.1f);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, m_targetRot, 0.2f);
+        transform.localPosition = Vector3.Lerp(m_targetPos, transform.localPosition, Mathf.Pow(0.0001f, Time.deltaTime));
+        transform.localRotation = Quaternion.Lerp(m_targetRot, transform.localRotation, Mathf.Pow(0.0002f, Time.deltaTime));
     }
 
     public void Disable()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExecutionState
@@ -53,6 +54,10 @@ public class NodeBehavior : MonoBehaviour
     private bool m_fired = false;
     public bool m_running = false;
 
+    public string description = "[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]";
+    public string hint = "template";
+    public Color color = new Color(1.0f, 0.0f, 1.0f);
+
     public void Run(ExecutionState state)
     {
         if (IsSingleUse() && m_fired)
@@ -78,21 +83,6 @@ public class NodeBehavior : MonoBehaviour
     protected virtual bool IsSingleUse()
     {
         return true;
-    }
-
-    public virtual string GetDescription()
-    {
-        return "[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]";
-    }
-
-    public virtual string GetHint()
-    {
-        return "template";
-    }
-
-    public virtual Color GetColor()
-    {
-        return new Color(1.0f, 0.0f, 1.0f);  // 1.0-s and 0.4-s work best
     }
 
     private IEnumerator PerformEmpty(ExecutionState state)
