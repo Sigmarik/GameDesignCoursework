@@ -16,7 +16,8 @@ public class NodeSlot : MonoBehaviour
     public GameObject? nextSlot = null;
     private NodeSlot? m_nextSlot = null;
     private NodeSlot? m_prevSlot = null;
-    private NodeBehavior? m_node = null;
+    public NodeBehavior? m_node = null;
+    private Bomb? m_bomb;
 
     public static GameObject GetActiveSlot()
     {
@@ -34,14 +35,27 @@ public class NodeSlot : MonoBehaviour
         }
     }
 
+    public void SetBomb(Bomb bomb)
+    {
+        m_bomb = bomb;
+    }
+
     public void BindNode(NodeBehavior nodeBeh)
+    {
+        Clear();
+        m_node = nodeBeh;
+        m_node.hostingSlot = this;
+
+        m_bomb?.Modify();
+    }
+
+    public void Clear()
     {
         if (m_node is not null)
         {
             Destroy(m_node.gameObject);
             m_node = null;
         }
-        m_node = nodeBeh;
     }
 
     public NodeBehavior? GetNode()

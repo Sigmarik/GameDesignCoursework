@@ -59,6 +59,8 @@ public class BombBtn : MonoBehaviour
     // Update is called once per frame
     void UpdatePositions()
     {
+        m_targetPos = m_originalPos;
+
         if (m_disabled)
         {
             Quaternion rotationAroundX = Quaternion.Euler(5f, 0f, 0f);
@@ -84,8 +86,8 @@ public class BombBtn : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition = Vector3.Lerp(m_targetPos, transform.localPosition, Mathf.Pow(0.0001f, Time.deltaTime));
-        transform.localRotation = Quaternion.Lerp(m_targetRot, transform.localRotation, Mathf.Pow(0.0002f, Time.deltaTime));
+        transform.localPosition = Vector3.Lerp(m_targetPos, transform.localPosition, Mathf.Pow(0.1f, Time.deltaTime * 10.0f));
+        transform.localRotation = Quaternion.Lerp(m_targetRot, transform.localRotation, Mathf.Pow(0.2f, Time.deltaTime * 10.0f));
     }
 
     public void Disable()
@@ -96,11 +98,13 @@ public class BombBtn : MonoBehaviour
             OnReleased();
         }
         m_disabled = true;
+        UpdatePositions();
     }
 
     public void Enable()
     {
         m_disabled = false;
+        UpdatePositions();
     }
 
     public virtual void OnPushed()

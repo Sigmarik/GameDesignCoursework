@@ -6,7 +6,7 @@ public class NodeMovement : MonoBehaviour
 {
     public Camera mainCamera;
     private bool isDragging = false;
-    private Vector3 m_restingPosition;
+    public Vector3 m_restingPosition = new Vector3();
     private Collider m_collider;
 
     private NodeSlot m_owningSlot;
@@ -54,14 +54,16 @@ public class NodeMovement : MonoBehaviour
         sHolding = false;
     }
 
-    void BindToSlot(GameObject slot)
+    public void BindToSlot(GameObject slot)
     {
         transform.SetParent(slot.transform);
         m_restingPosition = Vector3.zero;
         transform.rotation = slot.transform.rotation;
         m_ogRotation = Quaternion.identity;
         m_owningSlot = slot.GetComponent<NodeSlot>();
+        m_nodeBeh = GetComponent<NodeBehavior>();
         m_owningSlot.BindNode(m_nodeBeh);
+        m_nodeBeh.hostingSlot = m_owningSlot;
     }
 
     void Update()

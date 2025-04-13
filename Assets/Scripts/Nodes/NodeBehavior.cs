@@ -6,6 +6,7 @@ using UnityEngine;
 public class ExecutionState
 {
     public NodeSlot slot;
+    public Bomb bomb;
 
     private NodeSlot m_nextSlot = null;
 
@@ -51,12 +52,18 @@ public class ExecutionState
 
 public class NodeBehavior : MonoBehaviour
 {
+    public float frequency = 1.0f;
+    public int level = 1;
+
     private bool m_fired = false;
-    public bool m_running = false;
+    private bool m_running = false;
 
     public string description = "[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]";
     public string hint = "template";
     public Color color = new Color(1.0f, 0.0f, 1.0f);
+
+    [HideInInspector]
+    public NodeSlot hostingSlot = null;
 
     public void Run(ExecutionState state)
     {
@@ -82,7 +89,7 @@ public class NodeBehavior : MonoBehaviour
 
     protected virtual bool IsSingleUse()
     {
-        return true;
+        return false;
     }
 
     private IEnumerator PerformEmpty(ExecutionState state)

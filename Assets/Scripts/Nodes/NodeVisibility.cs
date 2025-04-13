@@ -36,6 +36,7 @@ public class NodeVisibility : MonoBehaviour
         FillDependencies();
         m_owningPlayer = sCurrentPlayer;
         description.SetActive(false);
+        hint.SetActive(false);
         m_descriptorText.SetText(m_nodeBeh.description);
         UpdateColors();
     }
@@ -73,7 +74,7 @@ public class NodeVisibility : MonoBehaviour
 
     void Update()
     {
-        if (m_owningPlayer == sCurrentPlayer || sReveal)
+        if (m_owningPlayer == 0 || sReveal)
         {
             hidden.SetActive(false);
             visible.SetActive(true);

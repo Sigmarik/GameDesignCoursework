@@ -845,6 +845,8 @@ MonoBehaviour:
   firstSlot: {fileID: 4181159524772163648}
   cam: {fileID: 0}
   m_camMovement: {fileID: 0}
+  passBtn: {fileID: 2263837624134540974}
+  explodeBtn: {fileID: 2271989405295780672}
 --- !u!1 &3816625708879276139
 GameObject:
   m_ObjectHideFlags: 0

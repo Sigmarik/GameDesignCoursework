@@ -86,10 +86,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BtmZenithColor: {r: 0.31952584, g: 0.29518104, b: 0.353, a: 1}
+    - _BtmZenithColor: {r: 0.3529412, g: 0.25785553, b: 0.24882354, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _TopZenithColor: {r: 0.17998488, g: 0.23057757, b: 0.352, a: 1}
+    - _TopZenithColor: {r: 0.214894, g: 0.2306705, b: 0.278, a: 1}
   m_BuildTextureStacks: []
