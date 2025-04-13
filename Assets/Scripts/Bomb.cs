@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using TMPro;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
@@ -30,8 +31,20 @@ public class Bomb : MonoBehaviour
     public GameObject wick;
     private Wick m_wick;
 
+    private int m_level = 1;
+
+    public int startingPlayerHealth = 5;
+    private int m_playerHealth;
+
+    public GameObject playerHealthDisplay;
+    public GameObject levelDisplay;
+
     void Start()
     {
+        m_playerHealth = startingPlayerHealth;
+        playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
+        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+
         m_firstSlot = firstSlot.GetComponent<NodeSlot>();
         m_camMovement = cam.GetComponent<CameraMovement>();
 
@@ -112,7 +125,7 @@ public class Bomb : MonoBehaviour
                 ++reattempt;
             } while ((m_slots[slotId].m_node is not null) && reattempt < 5);
 
-            GameObject nodePrefab = NodePool.pickOne(1);
+            GameObject nodePrefab = NodePool.pickOne(m_level);
             GameObject node = Instantiate(nodePrefab, transform);
             NodeSlot slot = m_slots[slotId];
             node.transform.position = slot.transform.position;
@@ -162,9 +175,38 @@ public class Bomb : MonoBehaviour
         if (NodeVisibility.sCurrentPlayer == 1)
         {
             m_evilGuy.Hit(amount);
+            if (m_evilGuy.health <= 0)
+            {
+                AdvanceStage();
+                m_evilGuy.ResetHealth();
+                m_execState.SetNext(null);
+            }
         }
+        else
+        {
+            m_playerHealth -= amount;
+            playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
+            if (m_playerHealth <= 0)
+            {
+                ResetStage();
+                m_execState.SetNext(null);
+            }
+        }
+    }
 
-        // TODO: Complete
+    void AdvanceStage()
+    {
+        ++m_level;
+        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+    }
+
+    void ResetStage()
+    {
+        m_level = 1;
+        m_playerHealth = startingPlayerHealth;
+        m_evilGuy.ResetHealth();
+        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+        Reset();
     }
 
     public void AfterExplosion()

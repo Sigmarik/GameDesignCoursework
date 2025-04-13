@@ -15,11 +15,19 @@ public class BBEG : MonoBehaviour
     public GameObject healthDisplay;
 
     public int health = 5;
+    private int m_startingHealth;
 
     // Start is called before the first frame update
     void Start()
     {
         m_headRB = head.GetComponent<Rigidbody>();
+        healthDisplay.GetComponent<TextMeshPro>().text = health.ToString();
+        m_startingHealth = health;
+    }
+
+    public void ResetHealth()
+    {
+        health = m_startingHealth;
         healthDisplay.GetComponent<TextMeshPro>().text = health.ToString();
     }
 
