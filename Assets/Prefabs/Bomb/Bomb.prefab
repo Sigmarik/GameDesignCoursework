@@ -847,6 +847,10 @@ MonoBehaviour:
   m_camMovement: {fileID: 0}
   passBtn: {fileID: 2263837624134540974}
   explodeBtn: {fileID: 2271989405295780672}
+  explodingLocators: []
+  passingLocator: {fileID: 0}
+  evilGuy: {fileID: 0}
+  wick: {fileID: 7226516523984758078}
 --- !u!1 &3816625708879276139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1028,7 @@ GameObject:
   - component: {fileID: 5390283055890182334}
   - component: {fileID: 8710699393358496743}
   - component: {fileID: 1131204641950826220}
+  - component: {fileID: 4287550177426904535}
   m_Layer: 0
   m_Name: Wick
   m_TagString: Untagged
@@ -1097,6 +1102,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4287550177426904535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226516523984758078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a39748426d10e4fa10c2b89f5505d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLength: 5
 --- !u!1 &7533659785917400681
 GameObject:
   m_ObjectHideFlags: 0

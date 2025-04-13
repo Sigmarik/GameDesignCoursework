@@ -16,7 +16,11 @@ public class NodeSkip : NodeBehavior
         {
             for (int id = -1; id < count; ++id)
             {
-                slot = slot.GetNextOrThis();
+                if (slot == null)
+                {
+                    break;
+                }
+                slot = slot.GetNext();
             }
         }
         else

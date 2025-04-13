@@ -9,6 +9,7 @@ public class ExecutionState
     public Bomb bomb;
 
     private NodeSlot m_nextSlot = null;
+    private bool m_requestedStop = false;
 
     public void Run()
     {
@@ -21,17 +22,29 @@ public class ExecutionState
 
     public void Advance()
     {
-        if (Finished())
+        if (m_requestedStop)
         {
-            return;
-        }
-        if (m_nextSlot is null)
-        {
-            slot = slot.GetNext();
+            slot = null;
         }
         else
         {
-            slot = m_nextSlot;
+            if (Finished())
+            {
+                return;
+            }
+            if (m_nextSlot is null)
+            {
+                slot = slot.GetNext();
+            }
+            else
+            {
+                slot = m_nextSlot;
+            }
+        }
+
+        if (slot is null)
+        {
+            bomb.AfterExplosion();
         }
 
         m_nextSlot = null;
@@ -41,6 +54,10 @@ public class ExecutionState
 
     public void SetNext(NodeSlot nextSlot)
     {
+        if (nextSlot is null)
+        {
+            m_requestedStop = true;
+        }
         m_nextSlot = nextSlot;
     }
 

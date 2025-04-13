@@ -27,6 +27,8 @@ public class Bomb : MonoBehaviour
     public GameObject evilGuy;
     private BBEG m_evilGuy;
     private List<NodeSlot> m_slots = new List<NodeSlot>();
+    public GameObject wick;
+    private Wick m_wick;
 
     void Start()
     {
@@ -37,6 +39,8 @@ public class Bomb : MonoBehaviour
         m_explodeBtn = explodeBtn.GetComponent<ExplodeBtn>();
         m_ogPos = m_targetPos = transform.position;
         m_ogRot = m_targetRot = transform.rotation;
+
+        m_wick = wick.GetComponent<Wick>();
 
         m_evilGuy = evilGuy.GetComponent<BBEG>();
 
@@ -67,11 +71,19 @@ public class Bomb : MonoBehaviour
 
     public void Pass()
     {
+        if (m_wick.Burnt())
+        {
+            Explode();
+            return;
+        }
+
         NodeVisibility.sCurrentPlayer = 1 - NodeVisibility.sCurrentPlayer;
         m_camMovement.focused = false;
         m_targetPos = passingLocator.transform.position;
         m_explodeBtn.Disable();
         m_passBtn.Disable();
+
+        m_wick.Burn();
 
         StartCoroutine(MakeAutoTurn());
     }
@@ -80,11 +92,11 @@ public class Bomb : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
-        if (Random.Range(0, 100) < 10)
-        {
-            Explode();
-            yield break;
-        }
+        // if (Random.Range(0, 100) < 10)
+        // {
+        //     Explode();
+        //     yield break;
+        // }
 
         int pick = Random.Range(2, 3);
         m_evilGuy.StartTweakingAnimation(pick);
@@ -92,11 +104,13 @@ public class Bomb : MonoBehaviour
         {
             yield return new WaitForSeconds(0.3f);
 
-            int slotId = Random.Range(1, m_slots.Count);
-            if (m_slots[slotId].m_node is not null)
+            int slotId = 0;
+            int reattempt = 0;
+            do
             {
                 slotId = Random.Range(1, m_slots.Count);
-            }
+                ++reattempt;
+            } while ((m_slots[slotId].m_node is not null) && reattempt < 5);
 
             GameObject nodePrefab = NodePool.pickOne(1);
             GameObject node = Instantiate(nodePrefab, transform);
@@ -113,11 +127,20 @@ public class Bomb : MonoBehaviour
 
     private void ReturnToThePlayer()
     {
+        if (m_wick.Burnt())
+        {
+            Explode();
+            return;
+        }
+
         NodeVisibility.sCurrentPlayer = 1 - NodeVisibility.sCurrentPlayer;
         m_camMovement.focused = true;
 
         m_targetPos = m_ogPos;
         m_targetRot = m_ogRot;
+
+
+        m_wick.Burn();
 
         m_passBtn.Enable();
         m_explodeBtn.Enable();
@@ -142,6 +165,36 @@ public class Bomb : MonoBehaviour
         }
 
         // TODO: Complete
+    }
+
+    public void AfterExplosion()
+    {
+        StartCoroutine(ResetAfterPause());
+    }
+
+    private IEnumerator ResetAfterPause()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Reset();
+    }
+
+    public void Reset()
+    {
+        NodeVisibility.sReveal = false;
+        m_wick.Reset();
+        for (int id = 0; id < m_slots.Count; ++id)
+        {
+            m_slots[id].Clear();
+        }
+
+        NodeVisibility.sCurrentPlayer = 0;
+        m_camMovement.focused = true;
+
+        m_targetPos = m_ogPos;
+        m_targetRot = m_ogRot;
+
+        m_passBtn.Enable();
+        m_explodeBtn.Enable();
     }
 
     public IEnumerator ActuallyExplode()
