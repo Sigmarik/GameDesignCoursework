@@ -39,6 +39,8 @@ public class Bomb : MonoBehaviour
     public GameObject playerHealthDisplay;
     public GameObject levelDisplay;
 
+    public int roundLength = 3;
+
     void Start()
     {
         m_playerHealth = startingPlayerHealth;
@@ -54,6 +56,8 @@ public class Bomb : MonoBehaviour
         m_ogRot = m_targetRot = transform.rotation;
 
         m_wick = wick.GetComponent<Wick>();
+        m_wick.startingLength = roundLength;
+        m_wick.Reset();
 
         m_evilGuy = evilGuy.GetComponent<BBEG>();
 
@@ -197,15 +201,18 @@ public class Bomb : MonoBehaviour
     void AdvanceStage()
     {
         ++m_level;
+        ++m_wick.startingLength;
         levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
     }
 
     void ResetStage()
     {
         m_level = 1;
+        m_wick.startingLength = roundLength;
         m_playerHealth = startingPlayerHealth;
         m_evilGuy.ResetHealth();
         levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+        playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
         Reset();
     }
 
