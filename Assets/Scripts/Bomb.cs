@@ -210,7 +210,7 @@ public class Bomb : MonoBehaviour
     {
         ++m_level;
         ++m_wick.startingLength;
-        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+        levelDisplay.GetComponent<TextMeshPro>().text = m_level <= 5 ? m_level.ToString() : "survival";
     }
 
     void ResetStage()
@@ -219,7 +219,7 @@ public class Bomb : MonoBehaviour
         m_wick.startingLength = roundLength;
         m_playerHealth = startingPlayerHealth;
         m_evilGuy.ResetHealth();
-        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+        levelDisplay.GetComponent<TextMeshPro>().text = m_level <= 5 ? m_level.ToString() : "survival";
         playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
         Reset();
     }
@@ -234,6 +234,8 @@ public class Bomb : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         Reset();
     }
+
+    static bool sQueue = false;
 
     public void Reset()
     {
@@ -253,7 +255,9 @@ public class Bomb : MonoBehaviour
         m_passBtn.Enable();
         m_explodeBtn.Enable();
 
-        if (Random.Range(0, 2) == 1)
+        sQueue = !sQueue;
+
+        if (sQueue)
         {
             Pass(true);
         }

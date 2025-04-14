@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406732606764754797, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: Deal 1 damage
+      value: Deal 2 damage
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frequency: 2
   level: 1
-  description: Deal 1 damage
+  description: Deal 2 damage
   hint: damage
   color: {r: 1, g: 0.4, b: 0.4, a: 1}
   hostingSlot: {fileID: 0}
