@@ -5,12 +5,22 @@ using UnityEngine;
 public class NodeSkip : NodeBehavior
 {
     public int count = 1;
+    private int m_times_executed = 0;
     protected override bool IsSingleUse()
     {
-        return true;
+        return false;
     }
     protected override void PerformActions(ExecutionState state)
     {
+        m_times_executed++;
+
+        if (count < 0)
+        {
+            GetComponent<NodeMovement>().m_tilted = m_times_executed % 2 != 0;
+
+            if (m_times_executed % 2 == 0) return;
+        }
+
         NodeSlot slot = state.slot;
         if (count > 0)
         {
@@ -20,14 +30,14 @@ public class NodeSkip : NodeBehavior
                 {
                     break;
                 }
-                slot = slot.GetNext();
+                slot = !state.inverted ? slot.GetNext() : slot.GetPrev();
             }
         }
         else
         {
             for (int id = 0; id < -count; ++id)
             {
-                slot = slot.GetPrevOrThis();
+                slot = !state.inverted ? slot.GetPrevOrThis() : slot.GetNextOrThis();
             }
         }
         state.SetNext(slot);

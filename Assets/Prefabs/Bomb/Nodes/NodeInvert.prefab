@@ -12,65 +12,13 @@ PrefabInstance:
       propertyPath: color.b
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 801307514240707848, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 801307514240707848, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 801307514240707848, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 801307514240707848, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 801307514240707848, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071058
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.000049561262
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.000049710274
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.70710784
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.683
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570250242514046763, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
     - target: {fileID: 1749692092425548305, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_Name
-      value: NodeSwap
+      value: NodeInvert
       objectReference: {fileID: 0}
     - target: {fileID: 2191506264262690032, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: swap
+      value: inversion
       objectReference: {fileID: 0}
     - target: {fileID: 2191506264262690032, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.b
@@ -82,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2191506264262690032, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.r
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2191506264262690032, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294928127
+      value: 4294927974
       objectReference: {fileID: 0}
     - target: {fileID: 4291716922198009873, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406732606764754797, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: Give the bomb to the opponent
+      value: Reverse the execution order
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: <>
+      value: '> <'
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.b
@@ -146,11 +94,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.r
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294928127
+      value: 4294927974
       objectReference: {fileID: 0}
     - target: {fileID: 6588136363544219049, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.b
@@ -162,11 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6588136363544219049, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor.r
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6588136363544219049, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294928127
+      value: 4294927974
       objectReference: {fileID: 0}
     - target: {fileID: 7459687234126530498, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_IsActive
@@ -179,14 +127,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1749692092425548305, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3270971007207425334}
+      addedObject: {fileID: 3370016363682127514}
   m_SourcePrefab: {fileID: 100100000, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
 --- !u!1 &3464062834295131475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1749692092425548305, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
   m_PrefabInstance: {fileID: 2907906419369901890}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3270971007207425334
+--- !u!114 &3370016363682127514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,12 +143,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3464062834295131475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c613c8c5af0dea4b96a8626c162ced3, type: 3}
+  m_Script: {fileID: 11500000, guid: f0bc072ee8a248a40be3bfef7df0a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1.1
-  level: 2
-  description: Give the bomb to the opponent
-  hint: swap
-  color: {r: 1, g: 0.4, b: 1, a: 1}
+  frequency: 1
+  level: 3
+  description: Reverse the execution order
+  hint: inversion
+  color: {r: 0.4, g: 0.4, b: 1, a: 1}
   hostingSlot: {fileID: 0}

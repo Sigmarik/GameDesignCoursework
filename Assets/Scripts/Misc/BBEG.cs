@@ -15,7 +15,7 @@ public class BBEG : MonoBehaviour
     public GameObject healthDisplay;
 
     public int health = 7;
-    private int m_startingHealth;
+    public int m_startingHealth;
 
     void Start()
     {

@@ -18,6 +18,8 @@ public class NodeMovement : MonoBehaviour
 
     private static bool sDragging = false;
 
+    public bool m_tilted = false;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -62,8 +64,9 @@ public class NodeMovement : MonoBehaviour
     {
         transform.SetParent(slot.transform);
         m_restingPosition = Vector3.zero;
-        transform.rotation = slot.transform.rotation;
         m_ogRotation = Quaternion.identity;
+        transform.rotation = slot.transform.rotation;
+        transform.position = slot.transform.position;
         m_owningSlot = slot.GetComponent<NodeSlot>();
         m_nodeBeh = GetComponent<NodeBehavior>();
         m_owningSlot.BindNode(m_nodeBeh);
@@ -80,7 +83,7 @@ public class NodeMovement : MonoBehaviour
         }
         else
         {
-            if (!m_nodeBeh.IsAlive())
+            if (!m_nodeBeh.IsAlive() || m_tilted)
             {
                 float angle = m_nodeBeh.IsRunning() ? 40.0f : 20.0f;
                 transform.localRotation = Quaternion.Euler(0.0f, angle, 0.0f) * m_ogRotation;

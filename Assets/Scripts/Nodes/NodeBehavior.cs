@@ -10,6 +10,7 @@ public class ExecutionState
 
     private NodeSlot m_nextSlot = null;
     private bool m_requestedStop = false;
+    public bool inverted = false;
 
     public void Run()
     {
@@ -34,7 +35,7 @@ public class ExecutionState
             }
             if (m_nextSlot is null)
             {
-                slot = slot.GetNext();
+                slot = !inverted ? slot.GetNext() : slot.GetPrev();
             }
             else
             {

@@ -43,11 +43,32 @@ public class Bomb : MonoBehaviour
 
     public GameObject store;
 
+    public float timePerTurn = 70.0f;
+    private float m_defaultTimePerTurn = 0.0f;
+    public float minTimePerTurn = 12.0f;
+    public float timeDecreaseRate = 0.7f;
+    private float m_remainingTime = 0.0f;
+
+    void UpdateLevelDisplay()
+    {
+        if (m_level > 7)
+        {
+            levelDisplay.GetComponent<TextMeshPro>().text = "survival " + m_level.ToString();
+        }
+        else
+        {
+            levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString() + " / 7";
+        }
+    }
+
     void Start()
     {
+        m_defaultTimePerTurn = timePerTurn;
+        m_remainingTime = timePerTurn;
+
         m_playerHealth = startingPlayerHealth;
         playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
-        levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString();
+        UpdateLevelDisplay();
 
         m_firstSlot = firstSlot.GetComponent<NodeSlot>();
         m_camMovement = cam.GetComponent<CameraMovement>();
@@ -63,6 +84,12 @@ public class Bomb : MonoBehaviour
 
         m_evilGuy = evilGuy.GetComponent<BBEG>();
 
+        StartCoroutine(DetectSlots());
+    }
+
+    private IEnumerator DetectSlots()
+    {
+        yield return new WaitForSeconds(0.01f);
         NodeSlot slot = m_firstSlot;
         while (slot is not null)
         {
@@ -76,6 +103,16 @@ public class Bomb : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(m_targetPos, transform.position, Mathf.Pow(0.7f, Time.deltaTime * 10.0f));
+
+        if (NodeVisibility.sCurrentPlayer == 0 && !m_wick.Burnt())
+        {
+            m_remainingTime -= Time.deltaTime;
+            m_wick.SetTurnRemainder(m_remainingTime / timePerTurn);
+            if (m_remainingTime <= 0)
+            {
+                Pass();
+            }
+        }
     }
 
     public void Explode()
@@ -92,6 +129,8 @@ public class Bomb : MonoBehaviour
 
     public void Pass(bool preserveWick = false)
     {
+        m_wick.SetTurnRemainder(1.0f);
+
         if (m_wick.Burnt())
         {
             Explode();
@@ -121,7 +160,7 @@ public class Bomb : MonoBehaviour
         //     yield break;
         // }
 
-        int pick = Random.Range(2, 3);
+        int pick = Random.Range(1, 4);
         m_evilGuy.StartTweakingAnimation(pick);
         for (int id = 0; id < pick; ++id)
         {
@@ -139,9 +178,7 @@ public class Bomb : MonoBehaviour
             while (nodePrefab is null) nodePrefab = NodePool.pickOne(m_level);
             GameObject node = Instantiate(nodePrefab, transform);
             NodeSlot slot = m_slots[slotId];
-            node.transform.position = slot.transform.position;
-            node.transform.rotation = slot.transform.rotation;
-            node.GetComponent<NodeMovement>().BindToSlot(m_slots[slotId].gameObject);
+            node.GetComponent<NodeMovement>().BindToSlot(slot.gameObject);
         }
 
         yield return new WaitForSeconds(1.0f);
@@ -156,6 +193,8 @@ public class Bomb : MonoBehaviour
             Explode();
             return;
         }
+
+        m_remainingTime = timePerTurn;
 
         NodeVisibility.sCurrentPlayer = 1 - NodeVisibility.sCurrentPlayer;
         m_camMovement.focused = true;
@@ -209,8 +248,10 @@ public class Bomb : MonoBehaviour
     void AdvanceStage()
     {
         ++m_level;
+        m_evilGuy.m_startingHealth += 2;
+        timePerTurn = minTimePerTurn + (timePerTurn - minTimePerTurn) * timeDecreaseRate;
         ++m_wick.startingLength;
-        levelDisplay.GetComponent<TextMeshPro>().text = m_level <= 5 ? m_level.ToString() : "survival";
+        UpdateLevelDisplay();
     }
 
     void ResetStage()
@@ -218,8 +259,9 @@ public class Bomb : MonoBehaviour
         m_level = 1;
         m_wick.startingLength = roundLength;
         m_playerHealth = startingPlayerHealth;
+        timePerTurn = m_defaultTimePerTurn;
         m_evilGuy.ResetHealth();
-        levelDisplay.GetComponent<TextMeshPro>().text = m_level <= 5 ? m_level.ToString() : "survival";
+        UpdateLevelDisplay();
         playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
         Reset();
     }
@@ -254,6 +296,8 @@ public class Bomb : MonoBehaviour
 
         m_passBtn.Enable();
         m_explodeBtn.Enable();
+
+        m_remainingTime = timePerTurn;
 
         sQueue = !sQueue;
 

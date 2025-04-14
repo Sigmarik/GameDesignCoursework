@@ -65,7 +65,7 @@ Shader "Custom/Wick"
                 float border = _Threshold;
                 float delta = uvY - border;
                 float width = 0.016;
-                if (delta > (sin(_Time.y) - 2) * width / 2 && delta < (sin(_Time.y * 1.345123 + 7) + 2) * width / 2) {
+                if (delta > -width / 2 && delta < width / 2) {
                     float _FlickerSpeed = 20;
                     float _FlickerIntensity = 0.6;
                     float flicker1 = (sin(_Time.y * _FlickerSpeed) + 1.0) * 0.5; // Base flicker

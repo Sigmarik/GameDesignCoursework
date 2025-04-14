@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Wick : MonoBehaviour
 {
-    private Material[] m_materials;
+    private Material[] m_materials = new Material[0];
     public int startingLength = 5;
-    private int m_length;
-    private int m_remainder;
+    private int m_length = 0;
+    private int m_remainder = 0;
     private float m_threshold = 0.0f;
+    private float m_turnRemainder = 1.0f;
 
     void Start()
     {
@@ -42,6 +43,11 @@ public class Wick : MonoBehaviour
         }
     }
 
+    public void SetTurnRemainder(float remainder = 1.0f)
+    {
+        m_turnRemainder = remainder;
+    }
+
     public void SetRemainingTurns(int remainder)
     {
         m_remainder = Math.Max(remainder, 0);
@@ -49,7 +55,7 @@ public class Wick : MonoBehaviour
 
     void Update()
     {
-        m_threshold = Mathf.Lerp((float)m_remainder / m_length, m_threshold, Mathf.Pow(0.7f, Time.deltaTime * 10.0f));
+        m_threshold = Mathf.Lerp(((float)m_remainder - 1.0f + m_turnRemainder) / m_length, m_threshold, Mathf.Pow(0.7f, Time.deltaTime * 10.0f));
         for (int id = 0; id < m_materials.Length; ++id)
         {
             m_materials[id].SetFloat("_Threshold", m_threshold);
