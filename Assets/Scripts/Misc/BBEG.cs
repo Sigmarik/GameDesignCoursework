@@ -17,7 +17,6 @@ public class BBEG : MonoBehaviour
     public int health = 7;
     private int m_startingHealth;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_headRB = head.GetComponent<Rigidbody>();

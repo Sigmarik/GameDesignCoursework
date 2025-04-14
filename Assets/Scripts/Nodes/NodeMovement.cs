@@ -16,6 +16,8 @@ public class NodeMovement : MonoBehaviour
 
     private static bool sHolding = false;
 
+    private static bool sDragging = false;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -33,6 +35,7 @@ public class NodeMovement : MonoBehaviour
         }
 
         isDragging = true;
+        sDragging = true;
         NodeSlot.EnableTips();
         sHolding = true;
     }
@@ -45,6 +48,7 @@ public class NodeMovement : MonoBehaviour
         }
 
         isDragging = false;
+        sDragging = false;
         NodeSlot.DisableTips();
         if (NodeSlot.GetActiveSlot() != null)
         {
@@ -86,6 +90,9 @@ public class NodeMovement : MonoBehaviour
                 transform.localRotation = m_ogRotation;
             }
 
+            if (sDragging && m_owningSlot is not null)
+                transform.localRotation = Quaternion.Euler(0.0f, Mathf.Sin(Time.time * 40.0f) * 5.0f, 0.0f) * transform.localRotation;
+
             Vector3 position = m_restingPosition;
             if (m_nodeBeh.IsRunning())
             {
@@ -103,7 +110,6 @@ public class NodeMovement : MonoBehaviour
         if (plane.Raycast(ray, out float enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            // Maintain a constant distance from the camera
             Vector3 direction = hitPoint - mainCamera.transform.position;
             if (NodeSlot.GetActiveSlot() is null)
             {

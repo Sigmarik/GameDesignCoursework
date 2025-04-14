@@ -81,12 +81,12 @@ Material:
     - _UVYThreshold: 0.31
     - _ZWrite: 1
     m_Colors:
-    - _BurntA: {r: 0.24313726, g: 0.22745098, b: 0.20392157, a: 1}
-    - _BurntB: {r: 0.261, g: 0.25789288, b: 0.23925, a: 1}
+    - _BurntA: {r: 0.188, g: 0.17587097, b: 0.15767741, a: 1}
+    - _BurntB: {r: 0.29700002, g: 0.2925672, b: 0.270403, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAbove: {r: 0, g: 0, b: 1, a: 1}
     - _ColorBelow: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _IntactA: {r: 0.676, g: 0.55693185, b: 0.3956136, a: 1}
-    - _IntactB: {r: 0.517, g: 0.35082147, b: 0.22157146, a: 1}
+    - _IntactA: {r: 0.754, g: 0.56029636, b: 0.29556802, a: 1}
+    - _IntactB: {r: 0.5176471, g: 0.30188486, b: 0.14131765, a: 1}
   m_BuildTextureStacks: []

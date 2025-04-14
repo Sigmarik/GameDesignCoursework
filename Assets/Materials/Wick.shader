@@ -65,10 +65,10 @@ Shader "Custom/Wick"
 
                 float border = float(_TurnsRemaining) / _RoundDuration;
                 float delta = uvY - border;
-                float width = 0.006;
+                float width = 0.016;
                 if (delta > (sin(_Time.y) - 2) * width / 2 && delta < (sin(_Time.y * 1.345123 + 7) + 2) * width / 2) {
-                    float _FlickerSpeed = 5;
-                    float _FlickerIntensity = 0.5;
+                    float _FlickerSpeed = 10;
+                    float _FlickerIntensity = 0.6;
                     float flicker1 = (sin(_Time.y * _FlickerSpeed) + 1.0) * 0.5; // Base flicker
                     float flicker2 = (sin(_Time.y * _FlickerSpeed * 1.5 + i.uv.y * 10.0) + 1.0) * 0.5; // Secondary flicker
                     // float noise = Noise(i.uv + _Time.y * 0.5) * _FlickerIntensity; // Add noise

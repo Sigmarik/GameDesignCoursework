@@ -90,7 +90,7 @@ public class Bomb : MonoBehaviour
         store.GetComponent<NodeStore>().Clear();
     }
 
-    public void Pass()
+    public void Pass(bool preserveWick = false)
     {
         if (m_wick.Burnt())
         {
@@ -104,7 +104,7 @@ public class Bomb : MonoBehaviour
         m_explodeBtn.Disable();
         m_passBtn.Disable();
 
-        m_wick.Burn();
+        if (!preserveWick) m_wick.Burn();
 
         StartCoroutine(MakeAutoTurn());
 
@@ -165,7 +165,7 @@ public class Bomb : MonoBehaviour
 
         m_wick.Burn();
 
-        m_passBtn.Enable();
+        if (!m_wick.Burnt()) m_passBtn.Enable();
         m_explodeBtn.Enable();
 
         store.GetComponent<NodeStore>().Restock(m_level, 3);
@@ -179,7 +179,7 @@ public class Bomb : MonoBehaviour
 
     public void Modify()
     {
-        m_explodeBtn.Disable();
+        if (!m_wick.Burnt()) m_explodeBtn.Disable();
     }
 
     public void DealDamage(int amount)
@@ -253,7 +253,14 @@ public class Bomb : MonoBehaviour
         m_passBtn.Enable();
         m_explodeBtn.Enable();
 
-        store.GetComponent<NodeStore>().Restock(m_level, 3);
+        if (Random.Range(0, 2) == 1)
+        {
+            Pass(true);
+        }
+        else
+        {
+            store.GetComponent<NodeStore>().Restock(m_level, 3);
+        }
     }
 
     public IEnumerator ActuallyExplode()
