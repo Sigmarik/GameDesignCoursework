@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406732606764754797, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: Repeat 2 cells
+      value: Repeat 3 cells
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
@@ -146,8 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e3699fa45ac1d43ac3c73e74cb3a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_running: 0
-  description: Repeat 2 cells
+  frequency: 0.5
+  level: 2
+  description: Repeat 3 cells
   hint: sequence
   color: {r: 0.3, g: 1, b: 1, a: 1}
-  count: 2
+  hostingSlot: {fileID: 0}
+  count: -3

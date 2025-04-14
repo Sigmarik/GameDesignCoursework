@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e3699fa45ac1d43ac3c73e74cb3a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1
-  level: 1
+  frequency: 0.5
+  level: 3
   description: Stop the execution
   hint: sequence
   color: {r: 1, g: 0.9, b: 0.2, a: 1}

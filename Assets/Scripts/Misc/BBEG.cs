@@ -14,7 +14,7 @@ public class BBEG : MonoBehaviour
 
     public GameObject healthDisplay;
 
-    public int health = 5;
+    public int health = 7;
     private int m_startingHealth;
 
     // Start is called before the first frame update

@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05906ef4e0759b3478fb6afff1aaa873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1
-  level: 1
+  frequency: 0.3
+  level: 3
   description: Deal 20 damage
   hint: death
   color: {r: 1, g: 0, b: 0, a: 1}

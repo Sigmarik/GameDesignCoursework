@@ -146,7 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c613c8c5af0dea4b96a8626c162ced3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_running: 0
+  frequency: 1.1
+  level: 2
   description: Give the bomb to the opponent
   hint: swap
   color: {r: 1, g: 0.4, b: 1, a: 1}
+  hostingSlot: {fileID: 0}

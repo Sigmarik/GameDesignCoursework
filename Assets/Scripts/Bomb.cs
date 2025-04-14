@@ -33,13 +33,15 @@ public class Bomb : MonoBehaviour
 
     private int m_level = 1;
 
-    public int startingPlayerHealth = 5;
+    public int startingPlayerHealth = 7;
     private int m_playerHealth;
 
     public GameObject playerHealthDisplay;
     public GameObject levelDisplay;
 
     public int roundLength = 3;
+
+    public GameObject store;
 
     void Start()
     {
@@ -84,6 +86,8 @@ public class Bomb : MonoBehaviour
         m_targetPos = explodingLocators[NodeVisibility.sCurrentPlayer].transform.position;
         m_explodeBtn.Disable();
         m_passBtn.Disable();
+
+        store.GetComponent<NodeStore>().Clear();
     }
 
     public void Pass()
@@ -103,6 +107,8 @@ public class Bomb : MonoBehaviour
         m_wick.Burn();
 
         StartCoroutine(MakeAutoTurn());
+
+        store.GetComponent<NodeStore>().Clear();
     }
 
     private IEnumerator MakeAutoTurn()
@@ -129,7 +135,8 @@ public class Bomb : MonoBehaviour
                 ++reattempt;
             } while ((m_slots[slotId].m_node is not null) && reattempt < 5);
 
-            GameObject nodePrefab = NodePool.pickOne(m_level);
+            GameObject nodePrefab = null;
+            while (nodePrefab is null) nodePrefab = NodePool.pickOne(m_level);
             GameObject node = Instantiate(nodePrefab, transform);
             NodeSlot slot = m_slots[slotId];
             node.transform.position = slot.transform.position;
@@ -156,11 +163,12 @@ public class Bomb : MonoBehaviour
         m_targetPos = m_ogPos;
         m_targetRot = m_ogRot;
 
-
         m_wick.Burn();
 
         m_passBtn.Enable();
         m_explodeBtn.Enable();
+
+        store.GetComponent<NodeStore>().Restock(m_level, 3);
     }
 
     public void SwitchExplodePosition()
@@ -244,6 +252,8 @@ public class Bomb : MonoBehaviour
 
         m_passBtn.Enable();
         m_explodeBtn.Enable();
+
+        store.GetComponent<NodeStore>().Restock(m_level, 3);
     }
 
     public IEnumerator ActuallyExplode()

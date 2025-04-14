@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05906ef4e0759b3478fb6afff1aaa873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_running: 0
+  frequency: 1
+  level: 2
   description: Deal 3 damage
   hint: damage
   color: {r: 1, g: 0.3, b: 0.3, a: 1}
+  hostingSlot: {fileID: 0}
   amount: 3
