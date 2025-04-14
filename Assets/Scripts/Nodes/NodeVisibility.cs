@@ -84,8 +84,6 @@ public class NodeVisibility : MonoBehaviour
         {
             hidden.SetActive(true);
             visible.SetActive(false);
-            // m_hiddenText.enabled = true;
-            // m_visibleText.enabled = false;
             description.SetActive(false);
         }
     }
