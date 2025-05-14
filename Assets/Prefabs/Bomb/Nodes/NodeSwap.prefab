@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406732606764754797, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
-      value: Give the bomb to the opponent
+      value: Change who is holding the bomb
       objectReference: {fileID: 0}
     - target: {fileID: 5198318416677573743, guid: 10f305d3b2bd7484f8e793f008f14b3d, type: 3}
       propertyPath: m_text
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frequency: 1.1
   level: 2
-  description: Give the bomb to the opponent
+  description: Change who is holding the bomb
   hint: swap
   color: {r: 1, g: 0.4, b: 1, a: 1}
   hostingSlot: {fileID: 0}

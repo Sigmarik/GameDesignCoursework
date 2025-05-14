@@ -5,7 +5,9 @@ using UnityEngine;
 public class NodeMovement : MonoBehaviour
 {
     public Camera mainCamera;
-    private bool isDragging = false;
+
+    [HideInInspector]
+    public bool isDragging = false;
     public Vector3 m_restingPosition = new Vector3();
     private Collider m_collider;
 

@@ -107,6 +107,11 @@ public class BombBtn : MonoBehaviour
         UpdatePositions();
     }
 
+    public bool IsActive()
+    {
+        return !m_disabled;
+    }
+
     public virtual void OnPushed()
     {
     }

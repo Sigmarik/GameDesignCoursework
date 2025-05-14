@@ -34,6 +34,9 @@ public class BBEG : MonoBehaviour
     {
         Vector3 randomDirection = UnityEngine.Random.onUnitSphere * 0.3f + Vector3.up;
         float strength = damage * (damage > 0 ? 0.2f : 0.1f);
+        strength = Mathf.Min(strength, 2.0f);
+
+        if (damage >= health) strength *= 10.0f;
         m_headRB.AddForce(randomDirection * strength, ForceMode.Impulse);
 
         health -= damage;

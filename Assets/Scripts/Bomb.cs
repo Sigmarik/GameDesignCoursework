@@ -49,15 +49,18 @@ public class Bomb : MonoBehaviour
     public float timeDecreaseRate = 0.7f;
     private float m_remainingTime = 0.0f;
 
+    private const int preSurvivalLevelCount = 4;
+    public GameObject playerCamera;
+
     void UpdateLevelDisplay()
     {
-        if (m_level > 7)
+        if (m_level > preSurvivalLevelCount)
         {
             levelDisplay.GetComponent<TextMeshPro>().text = "survival " + m_level.ToString();
         }
         else
         {
-            levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString() + " / 7";
+            levelDisplay.GetComponent<TextMeshPro>().text = m_level.ToString() + " / " + preSurvivalLevelCount;
         }
     }
 
@@ -102,6 +105,18 @@ public class Bomb : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (m_passBtn.IsActive())
+            {
+                Pass();
+            }
+            else if (m_explodeBtn.IsActive())
+            {
+                Explode();
+            }
+        }
+
         transform.position = Vector3.Lerp(m_targetPos, transform.position, Mathf.Pow(0.7f, Time.deltaTime * 10.0f));
 
         if (NodeVisibility.sCurrentPlayer == 0 && !m_wick.Burnt())
@@ -229,12 +244,12 @@ public class Bomb : MonoBehaviour
             if (m_evilGuy.health <= 0)
             {
                 AdvanceStage();
-                m_evilGuy.ResetHealth();
                 m_execState.SetNext(null);
             }
         }
         else
         {
+            playerCamera.GetComponent<CameraMovement>().Hit(amount);
             m_playerHealth -= amount;
             playerHealthDisplay.GetComponent<TextMeshPro>().text = m_playerHealth.ToString();
             if (m_playerHealth <= 0)
@@ -251,6 +266,7 @@ public class Bomb : MonoBehaviour
         m_evilGuy.m_startingHealth += 2;
         timePerTurn = minTimePerTurn + (timePerTurn - minTimePerTurn) * timeDecreaseRate;
         ++m_wick.startingLength;
+        m_evilGuy.ResetHealth();
         UpdateLevelDisplay();
     }
 

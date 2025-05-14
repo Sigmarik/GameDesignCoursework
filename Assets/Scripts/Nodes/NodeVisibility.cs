@@ -20,12 +20,15 @@ public class NodeVisibility : MonoBehaviour
     private int m_owningPlayer = 0;
     private NodeBehavior m_nodeBeh;
 
+    private NodeMovement m_nodeMovement;
+
     void FillDependencies()
     {
         m_hiddenText = hidden.GetComponent<TextMeshPro>();
         m_visibleText = visible.GetComponent<TextMeshPro>();
 
         m_nodeBeh = GetComponent<NodeBehavior>();
+        m_nodeMovement = GetComponent<NodeMovement>();
 
         m_descriptorText = description.GetComponent<TextMeshPro>();
         m_hintText = hint.GetComponent<TextMeshPro>();
@@ -36,9 +39,17 @@ public class NodeVisibility : MonoBehaviour
         FillDependencies();
         m_owningPlayer = sCurrentPlayer;
         description.SetActive(false);
+        StartCoroutine(UpdateInitialTextVisibility());
         hint.SetActive(false);
         m_descriptorText.SetText(m_nodeBeh.description);
         UpdateColors();
+    }
+
+    IEnumerator UpdateInitialTextVisibility()
+    {
+        yield return new WaitForEndOfFrame();
+
+        description.SetActive(m_owningPlayer == sCurrentPlayer || sReveal);
     }
 
     void OnValidate()
@@ -68,7 +79,11 @@ public class NodeVisibility : MonoBehaviour
 
     void OnMouseExit()
     {
-        description.SetActive(false);
+        if (m_nodeBeh.hostingSlot is not null || m_nodeMovement.isDragging)
+        {
+            description.SetActive(false);
+        }
+
         hint.SetActive(false);
     }
 
